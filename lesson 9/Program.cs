@@ -20,6 +20,24 @@ using System.Drawing;
 ValueTypeAssigment();
 ValueTypeContainingRefType();
 
+//передача ссылочных типов по значению
+Console.WriteLine("*****Passing Person object by value****");
+Person fred = new Person("Fred", 12);
+Console.WriteLine("\n Before by value call, Person is:"); //перед вызовом с передачей по значению
+fred.Display();
+SendAPersonByValue(fred);
+Console.WriteLine("\nAfter by value call, Person is:"); //после вызова с передачей по значению
+fred.Display();
+Console.ReadLine();
+
+static void SendAPersonByValue(Person p)
+{
+    //изменить значение возраста в р?
+    p.personAge = 99;
+
+    //увидит ли вызывающий код это изменение 
+    p = new Person("Nikki", 99);
+}
 
 static void ValueTypeContainingRefType()
 {
@@ -118,3 +136,26 @@ struct Rectangle
         Console.WriteLine("String = {0}, Top = {1}, Bottom = {2}, "+ " Left = {3}, Right = {4}", RectInfo.InfoString, RectTop, RectBottom, RectLeft, RectRight);
     }
 }
+
+
+//передача ссылочных типов по значению 
+
+class Person
+{
+    public string personName;
+    public int personAge;
+
+    //конструкторі 
+    public Person(string name, int age)
+    {
+        personName = name;
+        personAge = age;
+
+    }
+    public Person() { }
+    public void Display()
+    {
+        Console.WriteLine("Name: {0}, Age: {1}", personName, personAge);
+    }
+}
+
