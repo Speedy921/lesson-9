@@ -17,6 +17,7 @@
 //в результате две независемые переменные в стеke
 using System.Drawing;
 
+
 ValueTypeAssigment();
 ValueTypeContainingRefType();
 
@@ -29,6 +30,28 @@ SendAPersonByValue(fred);
 Console.WriteLine("\nAfter by value call, Person is:"); //после вызова с передачей по значению
 fred.Display();
 Console.ReadLine();
+
+//передача ссылочных типов по ссылке
+Console.WriteLine("*****Passing Person object by reference****");
+Person mel = new Person("Mel", 23);
+Console.WriteLine("Before by ref call Person is:"); //перед вызовом с передачей по ссылке 
+mel.Display();
+SendAPersonByReference(ref mel);
+Console.WriteLine("After by ref call, Person is:"); //после вызова с передачей по ссылке
+mel.Display();
+Console.ReadLine();
+
+
+//передача ссылочных типов по ссылке
+
+static void SendAPersonByReference(ref Person p)
+{
+    //изменить некоторые данные р
+    p.personAge = 555;
+
+    //р теперь указывает на новый обьект в куче!
+    p = new Person("Nikki", 999);
+}
 
 static void SendAPersonByValue(Person p)
 {
@@ -159,3 +182,29 @@ class Person
     }
 }
 
+
+//понятие кортежей 
+//одна иж целей применения параметра out - получение более одного значения из вызова метода
+//еще можно использовать кортежи
+
+//(string, int, string) values = ("a", 5, "c");
+//var values = ("a", 5, "c");
+
+//использование кортежей как возвращаемых значений метода
+
+//static (int a, string b, bool c) FillTheseValues()
+//{
+//    return (9, "Enjoy your string.", true);
+//}
+
+//использование выражений switch с сопоставлением с образцом кортежей
+
+//выражение switch с кортежами
+//static string RockPaperScissors(string first, string second)
+//{
+//    return (first, second) switch
+//    {
+//        ("rock", "paper") => "Paper wins".
+//        (_, _) => "Tie",
+//    };
+//}
